@@ -25,7 +25,7 @@ export const getClientIp = (req)=>(
 // ++++++++++++++++++++++++++++++++ Rate Limiter ++++++++++++++++++++++++++++++++++++++++++++++
 export const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 20, // limit each IP to 20 requests per windowMs
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
     standardHeaders: true, // Enable the `RateLimit-*` headers
     skipSuccessfulRequests: false,

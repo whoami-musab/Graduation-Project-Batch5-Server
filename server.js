@@ -27,11 +27,21 @@ server.use(limiter);
 server.set("trust proxy", 1); // trust first proxy
 
 server.use(express.json());
+const allowedOrigins = process.env.CLIENT_HOST.split(',').map(origin => origin.trim());
 server.use(
   cors({
-    origin: (origin, cb)=> cb(null, true),
+    origin: (origin, cb)=> {
+
+      if (!origin) return cb(null, true);
+
+      if(allowedOrigins.includes(origin)){
+        return cb(null, true);
+      }
+
+      return cb(new Error(`CORS blocked: ${origin}`), false);
+    },
     credentials: true,
-    methods: ["PUT", "DELETE", "POST", "GET"],
+    methods: ["PUT", "DELETE", "POST", "GET", "OPTIONS"],
     allowedHeaders: ['Content-Type', 'Authorization']
   })
 );

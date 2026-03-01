@@ -24,6 +24,8 @@ testSchema.virtual('duration').get(function() {
     return Math.round((this.endTime - this.startTime) / 1000 / 60); // duration in minutes
 })
 
+testSchema.index({ userId: 1, startTime: 1 }, { unique: true });
+
 const Test = mongoose.model("Test", testSchema);
 
 

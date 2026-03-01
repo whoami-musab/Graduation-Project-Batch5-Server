@@ -2,34 +2,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-
-// const isAdmin = (req, res, next) => {
-//   if () {
-//     // TODO:
-//     return next();
-//     } else {
-//         TODO:
-//     }
-// }
-
-// const isUser = (req, res, next) => {
-//   if () {
-//     // TODO:
-//     return next();
-//     } else {
-//         TODO:
-//     }
-// }
-
-// const isAuthenticated = (req, res, next) => {
-//   if () {
-//     // TODO:
-//     return next();
-//   } else {
-//     // TODO:
-//   }
-// }
-
 export const authMiddleware = (req, res, next) => {
   const header = req.headers.authorization || '';
   const token = header.startsWith('Bearer ') ? header.slice(7, header.length) : null;
